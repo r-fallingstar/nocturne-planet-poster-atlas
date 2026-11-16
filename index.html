@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ポスターをまとめる | Nocturne Planet</title>
+<style>
+:root{color-scheme:light;--ink:#242a27;--muted:#656d67;--line:#dde0da;--paper:#fff;--page:#f7f8f5;--stage:#eef0eb;--accent:#34456f;--soft:#e9edf5;--radius:6px}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font-family:"Yu Gothic UI","Yu Gothic","Hiragino Sans","Noto Sans JP",sans-serif;font-size:14px;line-height:1.6}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button,input,select{border-radius:var(--radius)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}svg{display:block;flex:none}button svg{width:17px;height:17px}button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:9px 16px;font-size:13px;font-weight:600;transition:background .15s,border-color .15s}button.primary{border:1px solid var(--ink);background:var(--ink);color:#fff}button.primary:hover{background:#3b4942}button.secondary{background:#fff;border:1px solid #cbd1c9;color:var(--ink)}button.secondary:hover{background:var(--page);border-color:#929f93}button.text-button{border:0;background:transparent;color:var(--muted);padding:6px 0;min-height:36px;font-size:12px;font-weight:400}button.text-button:hover{color:var(--ink);text-decoration:underline}button.small{min-height:36px;padding:6px 12px;font-size:12px}
+.topbar{background:#fff;border-bottom:1px solid var(--line)}.topbar-inner{max-width:1240px;margin:auto;min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 32px}.brand{display:flex;gap:12px;align-items:center}.brand-icon{width:32px;height:32px;color:var(--accent)}.brand strong{display:block;font-size:13px;letter-spacing:.11em;font-weight:650}.brand span{display:block;font-size:11px;letter-spacing:.04em;color:var(--muted)}
+.page{max-width:1240px;margin:0 auto;padding:32px}.page-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}h1{font-size:26px;font-weight:650;letter-spacing:.025em;line-height:1.4;margin:0 0 8px}h2{font-size:14px;line-height:1.5;font-weight:650;margin:0}p{margin:0}.intro{font-size:13px;color:var(--muted)}.local-note{font-size:11px;color:var(--muted);display:flex;align-items:center;gap:7px;white-space:nowrap}.local-note svg{width:14px;height:14px}.workbench{display:grid;grid-template-columns:400px minmax(0,1fr);border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}.editor{padding:26px 28px;border-right:1px solid var(--line);min-width:0}.section-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.section-heading small{font-size:11px;color:var(--muted);font-weight:400}.divider{border:0;border-top:1px solid var(--line);margin:24px 0}.section-index{font-size:11px;color:var(--accent);font-weight:650;letter-spacing:.08em;margin-right:9px;font-variant-numeric:tabular-nums}fieldset{border:0;margin:0;padding:0;min-width:0}legend{padding:0;margin-bottom:9px;font-size:12px;font-weight:600}.segmented{display:grid;grid-template-columns:1fr 1fr;background:var(--page);border:1px solid var(--line);padding:3px;gap:3px;border-radius:7px}.segmented label{position:relative;text-align:center;cursor:pointer}.segmented input{position:absolute;opacity:0;width:1px;height:1px}.segmented span{display:block;padding:8px 4px;font-size:12px;color:var(--muted);border:1px solid transparent;border-radius:4px}.segmented input:checked+span{background:#fff;border-color:#d5dcd4;color:var(--accent);font-weight:650}.segmented input:focus-visible+span{outline:2px solid var(--accent);outline-offset:1px}.field{margin-top:17px}.field label{display:block;margin-bottom:6px;font-size:12px;font-weight:550}.optional{font-size:11px;font-weight:400;color:var(--muted);margin-left:6px}.field input,.field select{display:block;background:#fff;border:1px solid #cdd3cb;width:100%;min-width:0;height:41px;padding:8px 11px;color:var(--ink);font-size:14px}.field input::placeholder{color:#8a918a}.field input:hover,.field select:hover{border-color:#9ca99e}.field input:focus,.field select:focus{border-color:var(--accent)}.field.number-field{display:flex;align-items:center;gap:16px;flex-wrap:wrap}.number-field label{margin:0}.number-field input{width:76px}.field-hint{font-size:11px;color:var(--muted)}.row2,.row4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.row4{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.row4 input{padding:8px;font-size:13px}.hidden,[hidden]{display:none!important}.note{font-size:11px;color:var(--muted);line-height:1.8}.editor-footer{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:21px}.preview-panel{min-width:0;display:flex;flex-direction:column;background:var(--stage)}.preview-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:23px 28px 0}.size{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.preview-stage{padding:22px 34px;flex:1;display:flex;justify-content:center;align-items:center}.paper{position:relative;width:100%;max-width:470px;aspect-ratio:1;background:#fff;box-shadow:0 3px 14px #23322710,0 0 0 1px #2431270b}.paper canvas{display:block;width:100%;height:auto;background:#fff}.empty-hint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#879086;gap:8px}.empty-hint svg{width:27px;height:27px;margin-bottom:3px;color:#a8b0a5}.empty-hint strong{font-size:13px;font-weight:500}.empty-hint span{font-size:11px}.preview-tip{text-align:center;color:var(--muted);font-size:11px;padding:0 20px 20px}.export-bar{padding:20px 28px;background:#fff;border-top:1px solid var(--line)}.export-row{display:flex;justify-content:space-between;align-items:center;gap:14px}.filename-label{font-size:10px;color:var(--muted);display:block;margin-bottom:2px}.filename{font-size:12px;font-weight:500;font-family:Consolas,"Courier New",monospace;overflow-wrap:anywhere}.export-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}.status{font-size:11px;color:var(--accent);min-height:18px}.page-footer{display:flex;justify-content:space-between;gap:24px;margin:17px 0 4px;color:var(--muted);font-size:11px}.page-footer details{max-width:760px}.page-footer summary{cursor:pointer;width:fit-content}.page-footer details p{margin-top:9px;line-height:1.9}.page-footer>span{white-space:nowrap;font-size:10px;letter-spacing:.07em}.error{font-size:12px;color:#9b312a;margin:9px 0;min-height:0}.error:empty{display:none}
+.atlas.workbench{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr)}.atlas .editor{padding:24px}.atlas .preview-stage{padding:24px;align-items:flex-start}.atlas .paper{aspect-ratio:1446/2046;max-width:465px}.upload-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 14px;border:1px dashed #b6c0b3;border-radius:6px;background:var(--page);margin-bottom:18px}.upload-bar.over{border-color:var(--accent);background:var(--soft)}.upload-bar p{font-size:12px}.upload-bar span{font-size:10px;color:var(--muted);display:block;margin-top:3px}.upload-bar button{white-space:nowrap}.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px 12px}.slot{position:relative;min-width:0}.slot-face{position:relative;aspect-ratio:1448/2048;background:#fafbf8;border:1px dashed #c6cec2;border-radius:5px;overflow:hidden}.slot.over .slot-face{border-color:var(--accent);background:var(--soft)}.slot.filled .slot-face{border-style:solid}.slot-pick{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:transparent;color:var(--muted);display:flex;flex-direction:column;font-size:11px;font-weight:400}.slot-pick:hover{background:#edf1e8}.slot-pick:focus-visible{outline-offset:-4px;z-index:2}.slot-pick img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.slot .hint{display:flex;flex-direction:column;align-items:center;gap:5px}.slot .hint svg{width:21px;height:21px;color:#8e9b8c}.slot .num{position:absolute;top:7px;left:7px;z-index:1;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:3px;background:#fff;color:var(--muted);border:1px solid #e2e5dd;font-size:10px;pointer-events:none;font-variant-numeric:tabular-nums}.slot .remove{display:none;position:absolute;right:5px;top:5px;z-index:2;width:28px;height:28px;min-height:28px;padding:0;border:1px solid #ddd;background:#fff;color:#333;font-size:18px;font-weight:400}.slot.filled .remove{display:flex}.slot-name{font-size:10px;color:var(--muted);white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-top:5px;min-height:16px}.slot .warn{position:absolute;left:0;right:0;bottom:0;background:#fff2dcf2;color:#70451d;font-size:10px;padding:4px 6px;pointer-events:none}.count{font-size:11px;color:var(--accent);font-variant-numeric:tabular-nums}.settings-row{display:grid;grid-template-columns:1.25fr 1fr;gap:14px}.settings-row .field{margin-top:0}.checkline{display:flex;align-items:center;gap:8px;font-size:12px;margin-top:16px;cursor:pointer}.checkline input{accent-color:var(--accent);width:16px;height:16px;margin:0}.atlas .editor-footer{margin-top:12px}.atlas .preview-panel{justify-content:space-between}
+@media(min-width:1000px){.caption .preview-panel{position:relative}.caption .paper{max-width:470px}}
+@media(max-width:1050px){.workbench{grid-template-columns:350px minmax(0,1fr)}.editor{padding:24px}.preview-stage{padding:24px}.row4{grid-template-columns:repeat(2,minmax(0,1fr))}.local-note{display:none}.export-row{flex-wrap:wrap}.export-row .primary{flex-grow:1}.atlas .editor{padding:20px}.upload-bar{align-items:start;flex-direction:column;gap:10px}}
+@media(max-width:780px){.topbar-inner{min-height:70px;padding:0 20px}.brand strong{font-size:11px}.brand span{font-size:10px}.brand-icon{width:26px;height:26px}.brand{gap:8px}.page{padding:25px 20px}.page-heading{margin-bottom:19px}h1{font-size:23px}.workbench,.atlas.workbench{grid-template-columns:1fr}.editor{border-right:0;border-bottom:1px solid var(--line)}.preview-heading{padding:22px 24px 0}.preview-stage{padding:24px}.paper{max-width:450px}.export-row{flex-wrap:nowrap}.export-row .primary{flex-grow:0}.atlas .preview-stage{align-items:center}.upload-bar{flex-direction:row;align-items:center}.row4{grid-template-columns:repeat(4,minmax(0,1fr))}.page-footer>span{display:none}}
+@media(max-width:440px){.topbar-inner{min-height:68px;justify-content:center;padding:14px}.brand{justify-content:center}.page{padding:24px 14px}.editor,.atlas .editor{padding:22px 18px}.preview-heading{padding:20px 18px 0}.preview-stage,.atlas .preview-stage{padding:22px}.export-bar{padding:18px}.row2{grid-template-columns:1fr;gap:0}.row4{grid-template-columns:repeat(2,minmax(0,1fr))}.intro{font-size:12px}.export-row{gap:10px}.export-row .primary{padding:9px 12px}.slots{gap:12px 8px}.slot-pick{font-size:10px}.slot .num{top:5px;left:5px;width:19px;height:19px}.settings-row{grid-template-columns:1fr;gap:15px}.upload-bar{flex-direction:column;align-items:stretch}.upload-bar button{align-self:start}.page-footer{padding:0 4px}.filename{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner"><div class="brand"><svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18a9 9 0 0 1 18 0M2 18h20M8 11l1-3m5 1 2 2M12 5v1"/></svg><div><strong>Nocturne Planet</strong><span>ポスターアトラス作成ツール</span></div></div></div></header>
+<div class="page"><div class="page-heading"><div><h1>ポスターをまとめる</h1><p class="intro">A1縦ポスターを9枚ずつまとめて、30秒で切り替わる掲示に。</p></div><p class="local-note"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>ブラウザ内で処理・送信なし</p></div>
+<main class="workbench atlas">
+  <section class="editor" aria-label="ポスターの選択と設定">
+    <div class="section-heading"><h2><span class="section-index">01</span>ポスターを選ぶ</h2><span class="count" id="count" role="status">0 / 9 枚</span></div>
+    <div class="upload-bar" id="dropAll"><div><p>ここに画像をドロップ</p><span>9枚ごとにページ追加 · ファイル名順 · 提出 1448 × 2048 px</span></div><button type="button" class="secondary small" id="chooseFiles">画像を選ぶ</button></div>
+    <div class="editor-footer" style="margin:0 0 15px"><button type="button" class="secondary small" id="prevPage" aria-label="前のページ">←</button><span id="pageLabel" role="status">ページ 1 / 1</span><button type="button" class="secondary small" id="nextPage" aria-label="次のページ">→</button><button type="button" class="secondary small" id="addPage">ページ追加</button></div><div class="slots" id="slots"></div><p class="error" id="error" role="alert"></p>
+    <input type="file" id="multi" accept="image/*" multiple hidden aria-label="複数のポスター画像"><input type="file" id="single" accept="image/*" hidden aria-label="ポスター画像">
+    <div class="editor-footer"><p class="note">各枠で差し替え。画像を枠間でドラッグすると入れ替えます。</p><button type="button" class="text-button" id="clear">すべて外す</button></div>
+    <hr class="divider"><div class="section-heading"><h2><span class="section-index">02</span>仕上がり</h2></div>
+    <div class="settings-row"><div class="field"><label for="fit">比率が違う画像</label><select id="fit"><option value="cover">枠いっぱいに切り抜く</option><option value="contain" selected>全体を収める（余白あり）</option></select></div><div class="field"><label for="empty">空き枠・余白の色</label><select id="empty"><option value="#ebe9e5">明るいグレー</option><option value="#1a1714">暗い色</option></select></div></div>
+    <label class="checkline"><input type="checkbox" id="recruit" checked>空き枠に「ポスター募集中」を表示</label>
+  </section>
+  <aside class="preview-panel" aria-label="アトラスの確認と保存">
+    <div class="preview-heading"><h2>プレビュー</h2><span class="size">1446 × 2046 px</span></div>
+    <div class="preview-stage"><div class="paper"><canvas id="out" width="1446" height="2046" role="img" aria-label="ポスターアトラスのプレビュー"></canvas></div></div>
+    <p class="preview-tip" id="previewNote">空き9枠は「ポスター募集中」を表示</p>
+    <div class="export-bar"><button type="button" class="secondary" id="dlAll" style="width:100%;margin-bottom:15px">全ページをPNGでまとめて保存（ZIP）</button><div class="export-row"><div><span class="filename-label">保存ファイル名</span><div class="filename" id="filename">nocturne_planet_poster_atlas_01.png</div></div><button type="button" class="primary" id="dlPng"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 16v5h16v-5"/></svg>PNGを保存</button></div><div class="export-actions"><p class="status" id="saveStatus" role="status"></p><button type="button" class="text-button" id="dlJpg">JPGで保存（軽量）</button></div></div>
+  </aside>
+</main>
+<section class="editor" style="margin-top:24px;border:1px solid var(--line);border-radius:8px;background:white" aria-label="Dropboxリンクの準備">
+  <h2><span class="section-index">03</span>Dropboxから読み込む</h2>
+  <p class="note" style="margin-top:10px">保存した画像をDropboxに置き、共有リンクを貼り付けてください。リンク変換はブラウザ内で行います。次回からは同じファイルを上書きすると、1ページの場合は入室時と5分ごと、複数ページの場合は次の巡回時に反映されます。</p>
+  <div class="field"><label for="dropboxUrl">画像ファイルのDropbox共有リンク</label><input id="dropboxUrl" type="url" placeholder="https://www.dropbox.com/scl/fi/…/nocturne_planet_poster_atlas.png?rlkey=…&amp;dl=0"></div>
+  <div class="field"><label for="directUrl">Unityに貼り付けるURL</label><input id="directUrl" readonly aria-describedby="urlStatus"></div>
+  <div class="editor-footer"><p class="status" id="urlStatus" role="status"></p><button type="button" class="secondary small" id="copyUrl" disabled>URLをコピー</button></div>
+  <p class="note">ページごとの共有URLを、番号順にUnityの Entrance_PosterAtlas → Atlas Urls に追加してアップロードします。2ページ以上なら30秒ごとに9枠が一緒に1.5秒のフェードで切り替わります。最終ページの空き枠は募集ポスターになります。Dropboxで「リンクを知っている全員」が閲覧できる画像にしてください。パスワード付き・期限切れのリンクは使用できません。実際の通信確認はVRChatで行ってください。</p>
+</section>
+<footer class="page-footer"><details><summary>並び順と、保存した画像の使い方</summary><p>プレビューは上段1・2・3、中段4・5・6、下段7・8・9。ワールドでは Zone_Corridor / Posters の Poster_01〜09 に対応します。<br>提出画像は1448 × 2048 px（A1縦比率）、ワールドの紙面は594 × 841 mm。1枠は482 × 682 pxに縮小します。保存した画像で、Dropboxの各ページ画像を同じ名前で上書きしてください。<br>初回設定は下の欄でDropbox共有リンクを変換し、Unityの Entrance_PosterAtlas → Atlas Urls に貼り付けます。画像読み込み上限2048pxに合わせた9枠専用です。</p></details><span>Nocturne Planet / POSTER ATLAS</span></footer>
+</div>
+<script>
+const W=1446,H=2046,COLS=3,ROWS=3,CW=W/COLS,CH=H/ROWS;
+const imgs=new Array(9).fill(null),versions=new Array(9).fill(0);
+const $=id=>document.getElementById(id);
+const slotsEl=$('slots'),out=$('out'),ctx=out.getContext('2d');
+const fitSel=$('fit'),emptySel=$('empty'),recruitChk=$('recruit');
+const single=$('single'),multi=$('multi');let target=0,currentPage=0,exporting=false;const pending=new Set();
+const pageCount=()=>imgs.length/9;
+const pageName=(page,ext="png")=>"nocturne_planet_poster_atlas_"+String(page+1).padStart(2,"0")+"."+ext;
+function ensureSlots(n){while(imgs.length<n){imgs.push(null);versions.push(0);}}
+function message(s){$('error').textContent=s;}
+function removeImage(i){versions[i]++;pending.delete(i);if(imgs[i])URL.revokeObjectURL(imgs[i].url);imgs[i]=null;}
+for(let i=0;i<9;i++){
+  const s=document.createElement('div');s.className='slot';
+  s.innerHTML='<div class="slot-face"><button type="button" class="slot-pick" aria-label="ポスター'+(i+1)+'を選ぶ"><span class="hint"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>画像を追加</span></button><span class="num">'+String(i+1).padStart(2,'0')+'</span><button type="button" class="remove" aria-label="ポスター'+(i+1)+'を外す" title="画像を外す">×</button></div><p class="slot-name">画像なし</p>';
+  s.querySelector('.slot-pick').onclick=()=>{target=currentPage*9+i;single.click();};
+  s.querySelector('.remove').onclick=()=>{removeImage(currentPage*9+i);message('');refresh();};
+  s.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();s.classList.add('over');});
+  s.addEventListener('dragleave',()=>s.classList.remove('over'));
+  s.querySelector('.slot-pick').draggable=true;
+  s.addEventListener('dragstart',e=>{const idx=currentPage*9+i;if(!imgs[idx]){e.preventDefault();return;}e.dataTransfer.setData('application/x-poster-slot',String(idx));e.dataTransfer.effectAllowed='move';});
+  s.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();s.classList.remove('over');const v=e.dataTransfer.getData('application/x-poster-slot'),idx=currentPage*9+i;
+    if(v!==''){const from=Number(v);if(Number.isInteger(from)&&from>=0&&from<imgs.length&&from!==idx){versions[from]++;versions[idx]++;pending.delete(from);pending.delete(idx);[imgs[from],imgs[idx]]=[imgs[idx],imgs[from]];refresh();}return;}
+    loadMany([...e.dataTransfer.files],idx);});
+  slotsEl.appendChild(s);
+}
+single.addEventListener('change',()=>{message('');if(single.files[0])loadInto(target,single.files[0]);single.value='';});
+const dropAll=$('dropAll');$('chooseFiles').onclick=()=>multi.click();
+dropAll.addEventListener('dragover',e=>{e.preventDefault();dropAll.classList.add('over');});
+dropAll.addEventListener('dragleave',()=>dropAll.classList.remove('over'));
+dropAll.addEventListener('drop',e=>{e.preventDefault();dropAll.classList.remove('over');loadMany([...e.dataTransfer.files],currentPage*9);});
+multi.addEventListener('change',()=>{loadMany([...multi.files],currentPage*9);multi.value='';});
+window.addEventListener('dragover',e=>e.preventDefault());window.addEventListener('drop',e=>e.preventDefault());
+function loadMany(files,start){
+  if(exporting)return;
+  message('');const valid=files.filter(f=>f.type.startsWith('image/'));
+  if(valid.length!==files.length)message('画像ファイルを選んでください。');
+  valid.sort((a,b)=>a.name.localeCompare(b.name,'ja',{numeric:true}));
+  ensureSlots(Math.ceil((start+valid.length)/9)*9);
+  valid.forEach((f,k)=>loadInto(start+k,f));refresh();
+}
+function loadInto(i,file){
+  if(exporting)return;
+  pending.add(i);
+  const version=++versions[i],url=URL.createObjectURL(file),im=new Image();
+  im.onload=()=>{if(version!==versions[i]){URL.revokeObjectURL(url);return;}if(imgs[i])URL.revokeObjectURL(imgs[i].url);imgs[i]={im,url,name:file.name};pending.delete(i);refresh();};
+  im.onerror=()=>{URL.revokeObjectURL(url);if(version===versions[i]){pending.delete(i);message(file.name+' を読み込めませんでした。PNG・JPGなどの画像を選んでください。');refresh();}};im.src=url;refresh();
+}
+function refresh(){
+  [...slotsEl.children].forEach((s,i)=>{
+    s.querySelectorAll('img,.warn').forEach(n=>n.remove());const d=imgs[currentPage*9+i];s.classList.toggle('filled',!!d);
+    s.querySelector('.hint').hidden=!!d;
+    const name=s.querySelector('.slot-name');name.textContent=d?d.name:(recruitChk.checked?'ポスター募集中':'空き枠');name.title=d?d.name:'';
+    if(d){const im=document.createElement('img');im.src=d.url;im.alt='';im.style.objectFit=fitSel.value;im.style.background=emptySel.value;s.querySelector('.slot-pick').appendChild(im);
+      if(Math.abs(d.im.naturalWidth/d.im.naturalHeight-1448/2048)>0.02){const w=document.createElement('div');w.className='warn';w.textContent=fitSel.value==='cover'?'端を切り抜き':'余白あり';w.title=d.im.naturalWidth+' × '+d.im.naturalHeight+' px';s.querySelector('.slot-face').appendChild(w);}}
+  });
+  const count=imgs.filter(Boolean).length,pageFilled=imgs.slice(currentPage*9,currentPage*9+9).filter(Boolean).length;
+  $('count').textContent=count+' 枚 / '+pageCount()+' ページ';
+  $('pageLabel').textContent='ページ '+(currentPage+1)+' / '+pageCount();
+  $('prevPage').disabled=currentPage===0||exporting;$('nextPage').disabled=currentPage===pageCount()-1||exporting;
+  $('addPage').disabled=exporting;
+  slotsEl.inert=exporting;dropAll.inert=exporting;
+  fitSel.disabled=exporting;emptySel.disabled=exporting;recruitChk.disabled=exporting;
+  $('filename').textContent=pageName(currentPage);
+  $('previewNote').textContent=pending.size?'画像を読み込み中…':('このページ：'+pageFilled+'枚、空き'+(9-pageFilled)+'枠'+(recruitChk.checked?'は募集ポスター':''));
+  for(const id of ['dlPng','dlJpg','dlAll'])$(id).disabled=pending.size>0||exporting;
+  $('clear').disabled=(count===0&&pending.size===0)||exporting;$('saveStatus').textContent='';draw();
+}
+// 空き枠はNocturne Planet公式Xを案内する募集ポスター。
+function drawRecruit(x,y,bg){
+  const dark=bg==='#1a1714',ink=dark?'#ece7df':'#29334d',sub=dark?'#b9b0a4':'#687188';
+  const F='"Hiragino Sans","Yu Gothic UI","Yu Gothic","Meiryo",sans-serif';
+  ctx.save();ctx.translate(x,y);ctx.scale(CW/482,CH/682);
+  ctx.strokeStyle=dark?'#605b52':'#c9c8c2';ctx.lineWidth=1.5;ctx.strokeRect(24,24,434,634);
+  ctx.strokeStyle=ink;ctx.lineWidth=2;ctx.beginPath();ctx.arc(241,206,62,Math.PI,0);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(171,206);ctx.lineTo(311,206);ctx.stroke();
+  for(const [sx,sy,r] of [[221,168,3],[264,183,2],[244,151,2]]){ctx.beginPath();ctx.arc(sx,sy,r,0,Math.PI*2);ctx.fillStyle=ink;ctx.fill();}
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle=ink;ctx.font='600 20px '+F;ctx.fillText('Nocturne Planet',241,278);
+  ctx.font='700 42px '+F;ctx.fillText('ポスター募集中',241,355);
+  ctx.fillStyle=sub;ctx.font='500 19px '+F;
+  ctx.fillText('お問い合わせは',241,480);
+  ctx.fillText('Nocturne Planet公式X',241,513);
+  ctx.fillText('（@NoctuPla_VRC）まで',241,546);
+  ctx.restore();
+}
+function draw(page=currentPage){
+  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+  ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+  for(let i=0;i<9;i++){
+    const x=(i%COLS)*CW,y=Math.floor(i/COLS)*CH,d=imgs[page*9+i];
+    ctx.save();ctx.beginPath();ctx.rect(x,y,CW,CH);ctx.clip();
+    if(!d){ctx.fillStyle=emptySel.value;ctx.fillRect(x,y,CW,CH);if(recruitChk.checked)drawRecruit(x,y,emptySel.value);ctx.restore();continue;}
+    const iw=d.im.naturalWidth,ih=d.im.naturalHeight;
+    const s=fitSel.value==='cover'?Math.max(CW/iw,CH/ih):Math.min(CW/iw,CH/ih);
+    const dw=iw*s,dh=ih*s;
+    if(fitSel.value==='contain'){ctx.fillStyle=emptySel.value;ctx.fillRect(x,y,CW,CH);}
+    drawHQ(d.im,x+(CW-dw)/2,y+(CH-dh)/2,dw,dh);
+    ctx.restore();
+  }
+}
+function drawHQ(im,x,y,w,h){
+  let src=im,sw=im.naturalWidth,sh=im.naturalHeight;
+  while(sw/2>w&&sh/2>h){
+    const c=document.createElement('canvas');c.width=Math.ceil(sw/2);c.height=Math.ceil(sh/2);
+    const cx=c.getContext('2d');cx.imageSmoothingQuality='high';cx.drawImage(src,0,0,c.width,c.height);
+    src=c;sw=c.width;sh=c.height;
+  }
+  ctx.drawImage(src,x,y,w,h);
+}
+
+function download(blob,name){
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+function canvasBlob(type){return new Promise((resolve,reject)=>out.toBlob(b=>b?resolve(b):reject(new Error('画像を作成できませんでした。')),type,0.92));}
+async function save(type,ext){
+  exporting=true;refresh();const page=currentPage;
+  try{draw(page);download(await canvasBlob(type),pageName(page,ext));$('saveStatus').textContent='ページ'+(page+1)+'を保存しました';}
+  catch(e){message(e.message);}finally{exporting=false;const status=$('saveStatus').textContent;refresh();$('saveStatus').textContent=status;}
+}
+// ZIPの非圧縮格納。PNG自体が圧縮済みなので外部ライブラリは不要。
+function crc32(bytes){let c=0xffffffff;for(const b of bytes){c^=b;for(let i=0;i<8;i++)c=(c>>>1)^((c&1)?0xedb88320:0);}return (c^0xffffffff)>>>0;}
+async function zipPages(){
+  exporting=true;refresh();const entries=[],parts=[],total=pageCount();let offset=0,success=false;
+  try{
+    for(let page=0;page<total;page++){
+      $('saveStatus').textContent=(page+1)+' / '+pageCount()+' ページを書き出し中';draw(page);
+      const bytes=new Uint8Array(await (await canvasBlob('image/png')).arrayBuffer()),name=new TextEncoder().encode(pageName(page)),crc=crc32(bytes);
+      const h=new Uint8Array(30+name.length),v=new DataView(h.buffer);
+      v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint32(14,crc,true);v.setUint32(18,bytes.length,true);v.setUint32(22,bytes.length,true);v.setUint16(26,name.length,true);h.set(name,30);
+      parts.push(h,bytes);entries.push({name,crc,size:bytes.length,offset});offset+=h.length+bytes.length;
+    }
+    const start=offset;
+    for(const e of entries){const h=new Uint8Array(46+e.name.length),v=new DataView(h.buffer);v.setUint32(0,0x02014b50,true);v.setUint16(4,20,true);v.setUint16(6,20,true);v.setUint32(16,e.crc,true);v.setUint32(20,e.size,true);v.setUint32(24,e.size,true);v.setUint16(28,e.name.length,true);v.setUint32(42,e.offset,true);h.set(e.name,46);parts.push(h);offset+=h.length;}
+    const end=new Uint8Array(22),v=new DataView(end.buffer);v.setUint32(0,0x06054b50,true);v.setUint16(8,entries.length,true);v.setUint16(10,entries.length,true);v.setUint32(12,offset-start,true);v.setUint32(16,start,true);parts.push(end);
+    download(new Blob(parts,{type:'application/zip'}),'nocturne_planet_poster_atlases.zip');
+    success=true;
+  }catch(e){message(e.message);}finally{exporting=false;refresh();if(success)$('saveStatus').textContent=entries.length+'ページをまとめました';}
+}
+$('dlPng').onclick=()=>save('image/png','png');$('dlJpg').onclick=()=>save('image/jpeg','jpg');$('dlAll').onclick=zipPages;
+$('prevPage').onclick=()=>{if(currentPage>0){currentPage--;refresh();}};
+$('nextPage').onclick=()=>{if(currentPage<pageCount()-1){currentPage++;refresh();}};
+$('addPage').onclick=()=>{ensureSlots(imgs.length+9);currentPage=pageCount()-1;refresh();};
+$('clear').onclick=()=>{imgs.forEach((_,i)=>removeImage(i));imgs.length=9;versions.length=9;currentPage=0;message('');refresh();};
+fitSel.onchange=refresh;emptySel.onchange=refresh;recruitChk.onchange=refresh;
+
+function toDropboxDirect(value){
+  const u=new URL(value.trim());
+  if(u.protocol!=='https:'||u.username||u.password||u.port||!['www.dropbox.com','dropbox.com','dl.dropbox.com','dl.dropboxusercontent.com'].includes(u.hostname))throw new Error('https:// で始まるDropboxの画像共有リンクを入力してください。');
+  if(!/^\/(s\/[^/]+\/[^/]+|scl\/fi\/[^/]+\/[^/]+)$/.test(u.pathname)||!/\.(png|jpe?g)$/i.test(u.pathname))throw new Error('フォルダではなく、書き出したPNGまたはJPG画像の共有リンクを入力してください。');
+  if(u.pathname.startsWith('/scl/fi/')&&!u.searchParams.get('rlkey'))throw new Error('rlkey を含む共有リンク全体を貼り付けてください。');
+  u.hostname='dl.dropboxusercontent.com';u.hash='';
+  const key=u.searchParams.get('rlkey');u.search='';if(key)u.searchParams.set('rlkey',key);u.searchParams.set('dl','1');
+  return u.href;
+}
+$('dropboxUrl').addEventListener('input',()=>{
+  $('directUrl').value='';$('copyUrl').disabled=true;
+  if(!$('dropboxUrl').value.trim()){$('urlStatus').textContent='';return;}
+  try{$('directUrl').value=toDropboxDirect($('dropboxUrl').value);$('copyUrl').disabled=false;$('urlStatus').textContent='変換しました。Unityの Atlas Urls に貼り付けてください。';}
+  catch(e){$('urlStatus').textContent=e.message;}
+});
+$('copyUrl').onclick=async()=>{
+  try{await navigator.clipboard.writeText($('directUrl').value);$('urlStatus').textContent='URLをコピーしました。';}
+  catch(e){$('directUrl').focus();$('directUrl').select();$('urlStatus').textContent='選択したURLをコピーしてください。';}
+};
+
+if(document.fonts)document.fonts.ready.then(()=>draw());refresh();
+</script>
+</body>
+</html>
